@@ -1,6 +1,6 @@
 import 'babel-polyfill';
 import MainRepository from '../repositories/main-repository';
-import UserEntity from '../entities/user-entity';
+import User from '../entities/user';
 import Post from '../entities/post';
 
 class MainService{
@@ -16,7 +16,7 @@ class MainService{
 
     for(let i=0; i < usersJson.length; i++){
       const userJson = usersJson[i];
-      const user = new UserEntity({name: userJson.name, username: userJson.username});
+      const user = new User({name: userJson.name, username: userJson.username});
       users.push(user);
     }
 
