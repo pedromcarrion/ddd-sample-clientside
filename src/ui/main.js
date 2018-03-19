@@ -1,11 +1,11 @@
-import PruebaRepository from './main-repository';
+import MainService from '../services/main-service';
 import 'babel-polyfill';
 import './main.scss';
 
 class Main{
     constructor(){
         this.__registerEvents();
-        this.__pruebaRepository = new PruebaRepository();
+        this.__mainService = new MainService();
         this.__usersContainer = document.getElementById('users');
         this.__postContainer = document.getElementById('post-created');
         this.__numerOfPosts = 1;
@@ -17,7 +17,7 @@ class Main{
 
         btn.addEventListener('click', async () => { 
             try{
-                const users = await this.__pruebaRepository.getUsers();
+                const users = await this.__mainService.getUsers();
                 this.__renderUsers(users);
             }catch(err){
                 console.log(err);
@@ -25,7 +25,7 @@ class Main{
         });
 
         btn2.addEventListener('click', async () => {
-            const post = await this.__pruebaRepository.createPost(`Post-${this.__numerOfPosts}`,'Prueba de post', 1)
+            const post = await this.__mainService.createPost(`Post-${this.__numerOfPosts}`,'Prueba de post', 1)
             this.__numerOfPosts++;
             this.__renderPost(post);
         });
@@ -37,7 +37,7 @@ class Main{
         
         for(let i=0; i < users.length; i++){
             const element = document.createElement('li');
-            element.innerText =  users[i].username;
+            element.innerText =  users[i].saludar();
             list.appendChild(element);
         }
         
@@ -49,13 +49,13 @@ class Main{
         this.__postContainer.innerHTML = '';
 
         const title = document.createElement('span');
-        title.innerText = `Title: ${post.title}`;
+        title.innerText = `Title: ${post.getTitle()}`;
 
         const body = document.createElement('span');
-        body.innerText = `Body: ${post.body}`;
+        body.innerText = `Body: ${post.getBody()}`;
 
         const userId = document.createElement('span');
-        userId.innerText = `User id: ${post.userId}`;
+        userId.innerText = `User id: ${post.getUserId()}`;
 
         this.__postContainer.appendChild(title);
         this.__postContainer.appendChild(body);
