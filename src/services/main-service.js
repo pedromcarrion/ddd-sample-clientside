@@ -1,11 +1,10 @@
 import 'babel-polyfill';
-import MainRepository from '../repositories/main-repository';
 import User from '../entities/user';
 import Post from '../entities/post';
 
 class MainService{
-  constructor(){
-    this._mainRepository = new MainRepository();
+  constructor(mainRepository){
+    this._mainRepository = mainRepository;
   }
 
 

@@ -1,11 +1,14 @@
 import MainService from '../services/main-service';
+import MainRepository from '../repositories/main-repository';
 import 'babel-polyfill';
 import './main.scss';
+
 
 class Main{
     constructor(){
         this.__registerEvents();
-        this.__mainService = new MainService();
+        const mainRepository = new MainRepository();
+        this.__mainService = new MainService(mainRepository);
         this.__usersContainer = document.getElementById('users');
         this.__postContainer = document.getElementById('post-created');
         this.__numerOfPosts = 1;
