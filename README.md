@@ -1,6 +1,6 @@
-#Sample of NLayer and DDD on clientside
+#Sample of Hexagonal Architecture on clientside
 
-Target: Create a sample that how i can use NLayer and DDD Architecture on client side JS
+Target: Create a sample that how i can use Hexagonal Architecture on client side JS
 
 Description:
 
